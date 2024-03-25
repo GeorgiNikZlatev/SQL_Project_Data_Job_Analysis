@@ -1,3 +1,3 @@
 CREATE DATABASE sql_job_analysis;
 
--- DROP DATABASE IF EXISTS sql_course;
+-- DROP DATABASE IF EXISTS sql_job_analysis;
