@@ -232,7 +232,7 @@ average_salary AS (
 SELECT
     skills_demand.skill_id,
     skills_demand.skills,
-    skills_demand,
+    skills_demand.demand_count,
     avg_salary
 FROM
     skills_demand
