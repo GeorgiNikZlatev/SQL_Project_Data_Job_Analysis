@@ -1,4 +1,4 @@
-# Intoduction
+# Introduction
 
 Dive into the 📊 data job market! Focusing on data analyst roles, this project explores 💰 top-paying jobs, 🔥 in-demand skills, and where high demand meets high salary in data analytics. 🚀
 
@@ -64,7 +64,7 @@ This table showcases high-paying data job opportunities in London, UK, featuring
 - **Roles span** from research engineering to analytics, with companies like DeepMind and Logispin leading the pack.
 - **Demand** for data professionals is evident, as indicated by postings from prestigious companies like NBCUniversal and Energy Aspects Ltd.
 
-![Top Paying Roles](assets\1_top+paying_job_graph.png)
+![Top Paying Roles](assets/1_top+paying_job_graph.png)
 
 *Bar graph showing the top 10 Data Analyst job titles along with their respective average salaries.*
 
@@ -112,7 +112,7 @@ Here's the breakdown of the most demanded skills for the top 10 highest paying d
 
 - **Looker:** Looker is a business intelligence platform used for data visualization, exploration, and analytics, valuable for roles involving data-driven decision-making.
 
-![Top Paying Roles](assets\2_top_paying_skills_graph.png)
+![Top Paying Roles](assets/2_top_paying_skills_graph.png)
 
 *Bar graph visualizing the count of skills for the top 10 paying jobs for Data Analysts in London, UK.*
 
