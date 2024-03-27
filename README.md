@@ -27,6 +27,12 @@ For my deep dive into the data analyst job market, I harnessed the power of seve
 - **Visual Studio Code:** My go-to for database management and executing SQL queries.
 - **Git & GitHub:** Essential for version control and sharing my SQL scripts and analysis, ensuring collaboration and project tracking.
 
+# Dataset
+This dataset pulls job postings from Google's search results for Data Analyst positions in the United States.
+
+Data collection started on November 4th, 2022, and adds ~100 new job postings to this dataset daily.
+
+🔍 Dataset can be found here: [Dataset Link](https://www.kaggle.com/datasets/lukebarousse/data-analyst-job-postings-google-search?select=gsearch_jobs.csv)
 # The Analysis
 
 Each query for this project aimed at investigating specific aspects of the data analyst job market. Here’s how I approached each question:
@@ -46,8 +52,8 @@ FROM
     job_postings_fact
     LEFT JOIN company_dim ON job_postings_fact.company_id = company_dim.company_id
 WHERE
-    job_title_short LIKE 'Data Analyst'
-    AND job_location LiKE '%London% UK'
+    job_title_short = 'Data Analyst'
+    AND job_location LIKE '%London% UK'
     AND salary_year_avg IS NOT NULL
 ORDER BY
     salary_year_avg DESC
@@ -82,7 +88,7 @@ WITH top_paying_jobs AS (
         job_postings_fact
         LEFT JOIN company_dim ON job_postings_fact.company_id = company_dim.company_id
     WHERE
-        job_title_short LIKE 'Data Analyst'
+        job_title_short = 'Data Analyst'
         AND job_location LiKE '%London%'
         AND salary_year_avg IS NOT NULL
     ORDER BY
@@ -92,7 +98,7 @@ WITH top_paying_jobs AS (
 )
 SELECT
     top_paying_jobs.*,
-    skills
+    skills_dim.skills
 FROM
     top_paying_jobs
     INNER JOIN skills_job_dim ON top_paying_jobs.job_id = skills_job_dim.job_id
@@ -128,7 +134,7 @@ WITH remote_job_skills AS (
         INNER JOIN job_postings_fact AS job_postings ON job_postings.job_id = skills_to_job.job_id
     WHERE
         job_postings.job_work_from_home = TRUE
-        AND job_title_short LIKE 'Data Analyst'
+        AND job_title_short = 'Data Analyst'
     GROUP BY
         skill_id
 )
@@ -166,7 +172,7 @@ FROM
     INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
 WHERE
     job_postings_fact.job_work_from_home = TRUE
-    AND job_title_short LIKE 'Data Analyst'
+    AND job_title_short = 'Data Analyst'
     AND salary_year_avg IS NOT NULL
 GROUP BY
     skills
@@ -208,7 +214,7 @@ WITH skills_demand AS (
         INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
         INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
     WHERE
-        job_title_short LIKE 'Data Analyst'
+        job_title_short = 'Data Analyst'
         AND salary_year_avg IS NOT NULL
         AND job_work_from_home = TRUE
     GROUP BY
@@ -223,7 +229,7 @@ average_salary AS (
         INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
         INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
     WHERE
-        job_title_short LIKE 'Data Analyst'
+        job_title_short = 'Data Analyst'
         AND salary_year_avg IS NOT NULL
         AND job_work_from_home = TRUE
     GROUP BY
@@ -239,7 +245,7 @@ FROM
     INNER JOIN average_salary ON skills_demand.skill_id = average_salary.skill_id
 WHERE demand_count > 10
 ORDER BY
-     avg_salary DESC,
+    avg_salary DESC,
     demand_count DESC
 LIMIT 10;
 ```
